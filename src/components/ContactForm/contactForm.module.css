@@ -1,0 +1,60 @@
+.form {
+    border: 1px solid rgba(72, 62, 62, 0.87);
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-items: center;
+    flex-direction: column;
+    width: 340px;
+    /* height: 150px; */
+    gap: 15px;
+    padding: 20px;
+    font-size: 20px;
+    font-weight: 500;
+}
+
+
+.contactForm{
+    flex-direction: column;
+    flex-wrap: wrap;
+    display: flex;
+    gap: 20px;
+}
+
+
+.contactImput{
+    display: flex;
+    align-items: center;
+    justify-items: center;
+    position: relative;
+    padding-bottom: 25px;
+    padding-top: 5px;
+}
+
+.telIcon{
+    display: flex;
+    align-items: center;
+    justify-items: center;
+    color: rgb(194, 104, 122);
+    font-size: 21px;
+}
+
+.inputCon{
+    background-color: #fcadc2;
+    border-radius: 4px;
+    margin-left: 10px;
+    outline: none;
+    color: rgba(72, 62, 62, 0.87);
+    border: 1px solid rgba(72, 62, 62, 0.87);
+    padding: 3px 5px;
+}
+
+.ErrorMessage {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    font-size: 13px;
+    font-weight: 600;
+    color: rgb(220, 57, 79)
+}

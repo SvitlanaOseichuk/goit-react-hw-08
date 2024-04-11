@@ -1,0 +1,42 @@
+.SearchBox{
+    display: flex;
+    align-items: center;
+    justify-items: center;
+    flex-direction: column;
+    width: 340px;
+    /* height: 150px; */
+    gap: 15px;
+    padding: 20px;
+    font-size: 15px;
+    font-weight: 600;
+}
+ 
+.SearchContLabel{
+    display: flex;
+    align-items: center;
+    justify-items: center;
+    position: relative;
+    padding-bottom: 25px;
+    padding-top: 5px;
+}
+
+.inputIcon{
+    display: flex;
+    align-items: center;
+    justify-items: center;
+    color: rgb(194, 104, 122);
+    font-size: 20px;
+}
+
+.SearchContImput{
+    background-color: #fcadc2;
+    border: 1px solid rgba(72, 62, 62, 0.87);
+    border-radius: 4px;
+    margin-left: 10px;
+    outline: none;
+    color: rgba(72, 62, 62, 0.87);
+    padding: 3px 5px;
+
+}
+
+
