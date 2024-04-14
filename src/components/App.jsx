@@ -1,10 +1,12 @@
 import React, { useEffect } from 'react';
 import './App.css';
-import ContactForm from './ContactForm/ContactForm';
-import SearchBox from './SearchBox/SearchBox';
-import ContactList from './ContactList/ContactList';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { fetchContacts } from '../redux/contacts/operations';//
+import { Route, Routes } from 'react-router-dom';
+import Home from '../Pages/HomePage/Home';
+import Registration from '../Pages/Registration/Registration';
+import Login from '../Pages/Login/Login';
+import Contacts from '../Pages/Contacts/Contacts';
 
 const App = () => {
 
@@ -17,10 +19,17 @@ const App = () => {
 
   return (
     <>
-    <h1>Phonebook</h1>
-    <ContactForm />
-    <SearchBox />
-    <ContactList />
+    <Navigation />
+
+    <main>
+      <Routes>
+        <Route path='/' element={<Home/>} />
+        <Route path='/register ' element={<Registration/>} />
+        <Route path='/login ' element={<Login/>} />
+        <Route path='/contacts' element={<Contacts/>} />
+        <Route path="*" element={<NotFound />} />
+      </Routes> 
+    </main>  
    </>
   )
 }

@@ -1,5 +1,5 @@
 import React from 'react'
-import css from './Contact.module.css'
+import css from './Contacts.module.css'
 import { IoMdContact } from "react-icons/io";
 import { BsFillTelephoneFill } from "react-icons/bs";
 import { useDispatch } from 'react-redux';
