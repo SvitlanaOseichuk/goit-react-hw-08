@@ -31,13 +31,8 @@ const INITIAL_FORM_VALUES = {
 
 const ContactForm = () => {
 
-  const dispatch = useDispatch();
 
-//   const handleSubmit = (values, formActions) => {
-//     const formData = values;
-//     dispatch(apiAddUserContact(formData));
-//     formActions.resetForm();
-//  }
+ const dispatch = useDispatch();
 
  const handleSubmit = (formData, formActions) => {
   dispatch(apiAddUserContact(formData))

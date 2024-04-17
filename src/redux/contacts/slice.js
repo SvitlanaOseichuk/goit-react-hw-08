@@ -46,21 +46,12 @@ export const INITIAL_STATE = {
         (contact) => contact.id !== action.payload.id)
     })
 
-
-    // .addCase(apiChangeUserContact.fulfilled, (state, action) => {
-    //   state.loader = false;
-    //   state.isError = null;
-    //   state.contacts.items = action.payload;
-    // })
-    // // поміняти логіку
-    
     
     .addMatcher(
       isAnyOf(
         apiGetUserContacts.pending,
         apiAddUserContact.pending,
-        apiDeleteUserContact.pending,
-        // apiChangeUserContact,
+        apiDeleteUserContact.pending
         ),
       (state) => {
           state.loader = true;
@@ -72,8 +63,7 @@ export const INITIAL_STATE = {
       isAnyOf(
         apiGetUserContacts.rejected,
         apiAddUserContact.rejected,
-        apiDeleteUserContact.rejected,
-        // apiChangeUserContact,
+        apiDeleteUserContact.rejected
         ),
       (state) => {
           state.loader = false;

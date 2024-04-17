@@ -3,8 +3,6 @@ import { apiLoginUser, apiLogoutUser, apiRefreshUser, apiRegisterUser } from "./
 
 
 export const INITIAL_STATE = {
-    // userData: null,
-    // isLoggedIn: false, 
     user: {
         name: null,
         email: null,

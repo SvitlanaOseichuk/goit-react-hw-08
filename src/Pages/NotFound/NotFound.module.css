@@ -1,0 +1,21 @@
+.backBtn {
+    border-radius: 8px;
+    border: 1px solid transparent;
+    padding: 7px;
+    font-weight: 500;
+    text-decoration: none;
+    color: rgba(72, 62, 62);
+    background-color: rgb(194, 104, 122);
+    transition: border-color 0.25s;
+    margin: 10px;
+  }
+  
+
+  .backBtn:hover {
+    border-color:  rgba(72, 62, 62, 0.87);
+  }
+  .backBtn:focus,
+  .backBtn:focus-visible {
+    outline: 4px auto -webkit-focus-ring-color;
+  }
+  

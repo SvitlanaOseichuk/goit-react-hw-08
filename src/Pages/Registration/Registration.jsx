@@ -11,7 +11,6 @@ const Registration = () => {
 
   const onRegister = (FormData) => {
     dispatch(apiRegisterUser(FormData))
-    
   }
 
 
