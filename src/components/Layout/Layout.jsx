@@ -1,2 +1,12 @@
-///Створіть компонент Layout, який буде рендерити компонент AppBar і огортати усі маршрути, щоб бути доступним на кожному із них. 
+import React from 'react';
+import AppBar from '../AppBar/AppBar'
 
+const Layout = () => {
+    return (
+      <div>
+        <AppBar />
+      </div>
+  )
+}
+
+export default Layout

@@ -5,8 +5,7 @@ import { BsFillTelephoneFill } from 'react-icons/bs';
 import { ErrorMessage, Field, Form, Formik } from 'formik';
 import * as Yup from 'yup';
 import { useDispatch } from 'react-redux';
-import { addContact } from '../../redux/contacts/operations';//
-
+import { apiAddUserContact } from '../../redux/contacts/operations';
 
 const ContactFormSchema = Yup.object().shape({
 
@@ -34,11 +33,17 @@ const ContactForm = () => {
 
   const dispatch = useDispatch();
 
-  const handleSubmit = (values, formActions) => {
-    const { name, number } = values;
-    dispatch(addContact({ name, number }));
-    formActions.resetForm();
+//   const handleSubmit = (values, formActions) => {
+//     const formData = values;
+//     dispatch(apiAddUserContact(formData));
+//     formActions.resetForm();
+//  }
+
+ const handleSubmit = (formData, formActions) => {
+  dispatch(apiAddUserContact(formData))
+      formActions.resetForm();
  }
+
 
 
 

@@ -8,6 +8,8 @@ const instance = axios.create({
 
 
 
+//token
+
 export const setToken = (token) => {
     instance.defaults.headers.common.Authorization = `Bearer ${token}`;
 }
@@ -18,6 +20,7 @@ export const clearToken = () => {
 
 
 
+//pages
 
 export const requestSingUp = async (formData) => {
     const {data} = await instance.post('/users/signup', formData);
@@ -25,8 +28,6 @@ export const requestSingUp = async (formData) => {
 
     return data;
 }
-
-
 
 
 
@@ -39,8 +40,6 @@ export const requestSignIn = async (formData) => {
 
 
 
-
-
 export const requesGetCurrentUser = async () => {
     const {data} = await instance.get('/users/current');
 
@@ -49,11 +48,142 @@ export const requesGetCurrentUser = async () => {
 
 
 
-
-
-
 export const requesLogOut = async () => {
     const {data} = await instance.post('/users/logout');
 
     return data;
 }
+
+
+
+//contacts
+
+export const requesGetContacts = async () => {
+    const {data} = await instance.get('/contacts');
+
+    return data;
+}
+
+
+
+export const requesAddContacts = async (formData) => {
+    const {data} = await instance.post('/contacts', formData);
+
+    return data;
+}
+
+
+
+export const requesDeleteContacts = async (contactId) => {
+    const {data} = await instance.delete(`/contacts/${contactId}`);
+
+    return data;
+}
+
+
+
+export const requesChangeContacts = async (contactId) => {
+    const {data} = await instance.patch(`/contacts/${contactId}`);
+
+    return data;
+}
+
+
+
+
+
+
+
+
+
+
+export const INITIAL_STATE = {
+    // userData: null,
+    // isSignedIn: false, 
+    user: {
+        name: null,
+        email: null,
+      },
+    token: null,
+    isLoggedIn: false,
+    isRefreshing: false,
+    loader: false,
+}
+
+
+
+
+export const apiRegisterUser = createAsyncThunk(
+    'auth/register',
+    async (formData, thunkAPI ) => {
+       try {
+          const data = await requestSingUp(formData);
+          return data;
+       } catch(err) {
+          return thunkAPI.rejectWithValue(err.message);
+       }
+       
+    }
+)//реєстрація
+// Використовується у компоненті RegistrationForm на сторінці реєстрації
+
+
+
+export const apiLoginUser = createAsyncThunk(
+    'auth/login',
+    async (formData, thunkAPI ) => {
+       try {
+          const data = await requestSignIn(formData);
+          return data;
+       } catch(err) {
+          return thunkAPI.rejectWithValue(err.message);
+       }
+       
+    }
+)//login
+// Використовується у компоненті LoginForm на сторінці логіну.
+
+
+
+export const apiRefreshUser = createAsyncThunk(
+    'auth/refresh',
+    async (_, thunkAPI ) => {
+
+       const state = thunkAPI.getState();
+       const token = state.auth.token;
+
+       setToken(token);
+
+       try {
+          const data = await requesGetCurrentUser();
+          return data;
+       } catch(err) {
+          return thunkAPI.rejectWithValue(err.message);
+       }
+    },
+    {
+        condition: (_, thunkAPI) => {
+            const state = thunkAPI.getState();
+            const token = state.auth.token;
+
+            if(!token) return false;
+            return true;
+        }
+    }
+)// Використовується у компоненті App під час його монтування.
+
+// logout - для виходу з додатка. Базовий тип екшену "auth/logout". 
+// Використовується у компоненті UserMenu у шапці додатку.
+
+export const apiLogoutUser = createAsyncThunk(
+    'auth/logout',
+    async (_, thunkAPI ) => {
+       try {
+          await requesLogOut();
+          return ;
+       } catch(err) {
+          return thunkAPI.rejectWithValue(err.message);
+       }
+       
+    }
+)

@@ -1,36 +1,35 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Contact from '../Contacts/Contacts'
 import css from './ContactList.module.css'
-import { useSelector } from 'react-redux';
-import { selectFilteredContacts, selectNameFilter } from '../../redux/filters/slice';//
-import ErrorMessage from '../ErrorMessage';
-import { selectContactError, selectContacts } from '../../redux/contacts/slice';//
-
-
+import { useDispatch, useSelector } from 'react-redux';
+import { selectFilteredContacts } from '../../redux/filters/slice';//
+import {selectContactError, selectContactLoader, selectContacts } from '../../redux/contacts/selectors';
+import { apiGetUserContacts } from '../../redux/contacts/operations';
+import ErrorMessage  from '../ErrorMessage';
+import Loader from '../Loader'
 
 const ContactList = () => {
 
-  // const contacts = useSelector(selectContacts);
-  // const filter = useSelector(selectNameFilter);
-  const error = useSelector(selectContactError);
+  const dispatch = useDispatch()
   const filteredContacts = useSelector(selectFilteredContacts)
+  const contacts = useSelector(selectContacts)
+  const loader = useSelector(selectContactLoader)
+  const error = useSelector(selectContactError);
 
-  // const filteredContacts = useMemo(
-  //   () =>
-  //   contacts.items.filter
-  //   (contact =>
-  //     contact.name && contact.name.toLowerCase().includes(filter.toLowerCase()) ||
-  //     contact.number && contact.number.toLowerCase().includes(filter.toLowerCase())
-  // ),
-  // [contacts, filter]
-  // )
-  
+
+  useEffect(() => {
+    dispatch(apiGetUserContacts())
+  },[dispatch])
+
 
   return (
     <div>
-      {error && <ErrorMessage />}
+    
       <ul className={css.contactLIst} >
-        {filteredContacts.map(contact => (
+        {/* {error && <ErrorMessage/>}
+        {loader && <Loader/>} */}
+        {contacts !== null &&
+          filteredContacts.map(contact => (
           <li key={contact.id} className={css.contact}>
             <Contact key={contact.id} data={contact} />
           </li>

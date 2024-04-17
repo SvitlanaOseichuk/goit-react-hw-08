@@ -1,13 +1,13 @@
-import { createSlice} from "@reduxjs/toolkit";
-import { fetchContacts, addContact, deleteContact } from "./operations";//
+import { createSlice, isAnyOf} from "@reduxjs/toolkit";
+import { apiGetUserContacts, apiAddUserContact, apiDeleteUserContact} from "./operations";//
 
 
 
 export const INITIAL_STATE = {
    contacts: {
       items: [],
-      loading: false,
-      error: null
+      loader: false,
+      isError: false,
    },
    filter: {
       name: ""
@@ -25,43 +25,61 @@ export const INITIAL_STATE = {
 
  extraReducers: builder => {
   builder
-    .addCase(fetchContacts.pending, (state) => {
-      state.loading = true;
-    })
-    .addCase(fetchContacts.fulfilled, (state, action) => {
-      state.loading =false;
-      state.error = null;
+    .addCase(apiGetUserContacts.fulfilled, (state, action) => {
+      state.loader =false;
+      state.isError = false;
       state.contacts.items = action.payload;
     })
-    .addCase(fetchContacts.rejected, (state, action) => {
-      state.loading = false;
-      state.error = action.payload
-    })
-    .addCase(addContact.pending, (state) => {
-      state.loading = true;
-    })
-    .addCase(addContact.fulfilled, (state, action) => {
-      state.loading = false;
-      state.error = null;
+    
+
+    .addCase(apiAddUserContact.fulfilled, (state, action) => {
+      state.loader = false;
+      state.isError = false;
       state.contacts.items.push(action.payload);
     })
-    .addCase(addContact.rejected, (state, action) => {
-      state.loading = false;
-      state.error = action.payload;
-    })
-    .addCase(deleteContact.pending, state => {
-      state.loading = true;
-    })
-    .addCase(deleteContact.fulfilled, (state, action) => {
-      state.loading = false;
-      state.error = null;
+
+
+    .addCase(apiDeleteUserContact.fulfilled, (state, action) => {
+      state.loader = false;
+      state.isError = false;
       state.contacts.items = state.contacts.items.filter(
         (contact) => contact.id !== action.payload.id)
     })
-    .addCase(deleteContact.rejected, (state, action) => {
-      state.loading = false;
-      state.error = action.payload;
-    });     
+
+
+    // .addCase(apiChangeUserContact.fulfilled, (state, action) => {
+    //   state.loader = false;
+    //   state.isError = null;
+    //   state.contacts.items = action.payload;
+    // })
+    // // поміняти логіку
+    
+    
+    .addMatcher(
+      isAnyOf(
+        apiGetUserContacts.pending,
+        apiAddUserContact.pending,
+        apiDeleteUserContact.pending,
+        // apiChangeUserContact,
+        ),
+      (state) => {
+          state.loader = true;
+          state.isError = false;
+      }
+  )
+  
+    .addMatcher(
+      isAnyOf(
+        apiGetUserContacts.rejected,
+        apiAddUserContact.rejected,
+        apiDeleteUserContact.rejected,
+        // apiChangeUserContact,
+        ),
+      (state) => {
+          state.loader = false;
+          state.isError = true;
+      }
+  );     
 },
 
 })

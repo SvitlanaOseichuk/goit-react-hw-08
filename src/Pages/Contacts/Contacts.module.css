@@ -1,8 +1,6 @@
-.welcoming {
+.contacts{
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 40px;
-    font-weight: 500;
-    height: 90vh;
+    flex-direction: column;
 }

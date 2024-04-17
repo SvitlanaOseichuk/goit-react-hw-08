@@ -1,34 +1,59 @@
 import React, { useEffect } from 'react';
-import './App.css';
+import css from './App.module.css'
 import { useDispatch } from 'react-redux';
-import { fetchContacts } from '../redux/contacts/operations';//
 import { Route, Routes } from 'react-router-dom';
 import Home from '../Pages/HomePage/Home';
 import Registration from '../Pages/Registration/Registration';
 import Login from '../Pages/Login/Login';
 import Contacts from '../Pages/Contacts/Contacts';
+import NotFound from '../Pages/NotFound/NotFound';
+import AppBar from './AppBar/AppBar';
+
+import { Suspense } from 'react';
+import { apiRefreshUser } from '../redux/auth/operation';
+import RestritedRoute from './RestrictedRoute/RestritedRoute';
+import PrivateRoute from './PrivateRoute/PrivateRoute';
+import { apiGetUserContacts } from '../redux/contacts/operations';
+import Loader from './Loader';
+import Layout from './Layout/Layout';
 
 const App = () => {
 
   const dispatch = useDispatch();
-   
+
+  
   useEffect(() => {
-    dispatch(fetchContacts());
+    dispatch(apiRefreshUser());
   }, [dispatch]);
+
 
 
   return (
     <>
-    <Navigation />
+    <Layout />
 
-    <main>
+    <main className={css.main}>
+    <Suspense fallback={<Loader/>}>
       <Routes>
         <Route path='/' element={<Home/>} />
-        <Route path='/register ' element={<Registration/>} />
-        <Route path='/login ' element={<Login/>} />
-        <Route path='/contacts' element={<Contacts/>} />
+        <Route path='/register' element={
+          <RestritedRoute>
+            <Registration/>
+          </RestritedRoute>
+        } />
+        <Route path='/login' element={
+          <RestritedRoute>
+            <Login/>
+          </RestritedRoute>
+        } />
+        <Route path='/contacts' element={
+          <PrivateRoute>
+            <Contacts/>
+          </PrivateRoute>
+        } />
         <Route path="*" element={<NotFound />} />
       </Routes> 
+      </Suspense>
     </main>  
    </>
   )
