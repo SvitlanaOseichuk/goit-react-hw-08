@@ -1,7 +1,7 @@
 import React from 'react'
 import { useDispatch } from 'react-redux'
 import RegisterForm from '../../components/RegistrationForm/RegistrationForm';
-import { apiRegisterUser } from '../../redux/auth/operation';
+import { apiRegisterUser } from '../../redux/auth/operations';
 import { Helmet } from 'react-helmet-async';
 
 const Registration = () => {
