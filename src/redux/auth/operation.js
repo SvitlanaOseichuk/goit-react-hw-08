@@ -98,8 +98,6 @@ export const requesChangeContacts = async (contactId) => {
 
 
 export const INITIAL_STATE = {
-    // userData: null,
-    // isSignedIn: false, 
     user: {
         name: null,
         email: null,
@@ -124,10 +122,7 @@ export const apiRegisterUser = createAsyncThunk(
        }
        
     }
-)//реєстрація
-// Використовується у компоненті RegistrationForm на сторінці реєстрації
-
-
+)
 
 export const apiLoginUser = createAsyncThunk(
     'auth/login',
@@ -140,10 +135,7 @@ export const apiLoginUser = createAsyncThunk(
        }
        
     }
-)//login
-// Використовується у компоненті LoginForm на сторінці логіну.
-
-
+)
 
 export const apiRefreshUser = createAsyncThunk(
     'auth/refresh',
@@ -170,11 +162,7 @@ export const apiRefreshUser = createAsyncThunk(
             return true;
         }
     }
-)// Використовується у компоненті App під час його монтування.
-
-// logout - для виходу з додатка. Базовий тип екшену "auth/logout". 
-// Використовується у компоненті UserMenu у шапці додатку.
-
+)
 export const apiLogoutUser = createAsyncThunk(
     'auth/logout',
     async (_, thunkAPI ) => {

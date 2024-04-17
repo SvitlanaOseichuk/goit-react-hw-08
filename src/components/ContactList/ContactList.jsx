@@ -27,7 +27,6 @@ const ContactList = () => {
     
       <ul className={css.contactLIst} >
         {loader && <Loader/>}
-        {error && <ErrorMessage/>}
         {contacts !== null &&
           filteredContacts.map(contact => (
           <li key={contact.id} className={css.contact}>

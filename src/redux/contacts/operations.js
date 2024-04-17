@@ -3,7 +3,6 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import { requesAddContacts, requesDeleteContacts, requesGetContacts } from "../auth/operation";
 
 
-// axios.defaults.baseURL = 'https://6615444bb8b8e32ffc7a6b40.mockapi.io/';
 
 
 
@@ -56,15 +55,3 @@ export const apiDeleteUserContact = createAsyncThunk(
     );
     
 
-
-// export const apiChangeUserContact = createAsyncThunk(
-//       "contact/change",
-//       async (contactId, thunkAPI) => {
-//         try {
-//           const data = await requesChangeContacts(contactId);
-//           return data;
-//         } catch (error) {
-//           return thunkAPI.rejectWithValue(error.message);
-//         }
-//       }
-//     );
