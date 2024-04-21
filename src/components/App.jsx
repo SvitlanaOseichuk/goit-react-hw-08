@@ -7,13 +7,10 @@ import Registration from '../Pages/Registration/Registration';
 import Login from '../Pages/Login/Login';
 import Contacts from '../Pages/Contacts/Contacts';
 import NotFound from '../Pages/NotFound/NotFound';
-import AppBar from './AppBar/AppBar';
-
 import { Suspense } from 'react';
 import { apiRefreshUser } from '../redux/auth/operation';
 import RestritedRoute from './RestrictedRoute/RestritedRoute';
 import PrivateRoute from './PrivateRoute/PrivateRoute';
-import { apiGetUserContacts } from '../redux/contacts/operations';
 import Loader from './Loader';
 import Layout from './Layout/Layout';
 

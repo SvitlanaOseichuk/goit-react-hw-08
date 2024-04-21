@@ -1,6 +1,6 @@
 import axios from "axios";
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { requesAddContacts, requesDeleteContacts, requesGetContacts } from "../auth/operations";
+import { requesAddContacts, requesDeleteContacts, requesGetContacts } from "../auth/operation";
 
 
 
