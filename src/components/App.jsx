@@ -2,11 +2,11 @@ import React, { useEffect } from 'react';
 import css from './App.module.css'
 import { useDispatch } from 'react-redux';
 import { Route, Routes } from 'react-router-dom';
-import Home from '../Pages/HomePage/Home';
-import Registration from '../Pages/Registration/Registration';
-import Login from '../Pages/Login/Login';
-import Contacts from '../Pages/Contacts/Contacts';
-import NotFound from '../Pages/NotFound/NotFound';
+import Home from '../pages/HomePage/Home';
+import Registration from '../pages/Registration/Registration';
+import Login from '../pages/Login/Login';
+import Contacts from '../pages/Contacts/Contacts';
+import NotFound from '../pages/NotFound/NotFound';
 import { Suspense } from 'react';
 import { apiRefreshUser } from '../redux/auth/operations';
 import RestritedRoute from './RestrictedRoute/RestritedRoute';
