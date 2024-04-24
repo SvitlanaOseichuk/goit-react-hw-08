@@ -1,6 +1,6 @@
 import { useDispatch} from "react-redux";
 import css from './UserManu.module.css'
-import { apiLogoutUser } from "../../redux/auth/operation";
+import { apiLogoutUser } from "../../redux/auth/operations";
 
 export const UserMenu = () => { 
   

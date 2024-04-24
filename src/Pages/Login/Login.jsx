@@ -1,6 +1,6 @@
 import React from 'react'
 import { useDispatch } from 'react-redux';
-import { apiLoginUser } from '../../redux/auth/operation';
+import { apiLoginUser } from '../../redux/auth/operations';
 import LoginForm from '../../components/LoginForm/LoginForm';
 import { Helmet } from 'react-helmet-async';
 

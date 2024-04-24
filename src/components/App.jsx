@@ -8,7 +8,7 @@ import Login from '../Pages/Login/Login';
 import Contacts from '../Pages/Contacts/Contacts';
 import NotFound from '../Pages/NotFound/NotFound';
 import { Suspense } from 'react';
-import { apiRefreshUser } from '../redux/auth/operation';
+import { apiRefreshUser } from '../redux/auth/operations';
 import RestritedRoute from './RestrictedRoute/RestritedRoute';
 import PrivateRoute from './PrivateRoute/PrivateRoute';
 import Loader from './Loader';
